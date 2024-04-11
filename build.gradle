@@ -37,7 +37,6 @@ tasks.spotbugsMain {
 		required = true
 		outputLocation = file("$rootDir/reports/spotbugs.html")
 	}
-	onlyAnalyze = ['com.datadoghq.workshops.samplevulnerablejavaapp.DomainTestService']
 }
 
 tasks.named('test') {
