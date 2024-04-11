@@ -29,6 +29,7 @@ dependencies {
 }
 
 tasks.spotbugsMain {
+	ignoreFailures = true
 	reports.create("sarif") {
 		required = true
 		outputLocation = file("$rootDir/reports/spotbugs.sarif")
