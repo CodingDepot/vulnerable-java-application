@@ -54,3 +54,11 @@ jacocoTestReport {
 		xml.outputLocation = file("$rootDir/reports/coverage.xml")
 	}
 }
+
+sonar {
+	properties {
+		property("sonar.projectKey", "Vulnerable-Java-App")
+		property("sonar.projectName", "Vulnerable Java App")
+		// add host URL and TOKEN in command line
+	}
+}
