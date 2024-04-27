@@ -5,6 +5,7 @@ plugins {
 
 	id 'com.github.spotbugs' version '6.0.11'
 	id 'jacoco'
+	id 'org.sonarqube' version '5.0.0.4638'
 }
 
 group = 'com.datadoghq.workshops'
@@ -51,5 +52,13 @@ jacocoTestReport {
 	reports {
 		xml.required = true
 		xml.outputLocation = file("$rootDir/reports/coverage.xml")
+	}
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "Vulnerable-Java-App")
+		property("sonar.projectName", "Vulnerable Java App")
+		// add host URL and TOKEN in command line
 	}
 }
