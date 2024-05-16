@@ -17,7 +17,7 @@ RUN wget -O dd-java-agent.jar https://github.com/DataDog/dd-trace-java/releases/
     sha256sum -c SHA256SUMS
 
 # Utility
-RUN apt get curl wget
+RUN apt install curl wget
 
 #CMD ["sh", "-c", "export INSTANCE_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4); export DD_TRACE_AGENT_URL=http://$INSTANCE_IP:8126; java -javaagent:/app/dd-java-agent.jar -jar /app/spring-boot-application.jar"]
 CMD ["java", "-javaagent:/app/dd-java-agent.jar", "-jar", "/app/spring-boot-application.jar"]
