@@ -4,7 +4,7 @@ WORKDIR /home/gradle/src
 RUN gradle bootJar --no-daemon
 
 
-FROM eclipse-temurin:17
+FROM eclipse-temurin:17-alpine
 LABEL org.opencontainers.image.source="https://github.com/DataDog/vulnerable-java-application/"
 EXPOSE 8080
 RUN mkdir /app
