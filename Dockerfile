@@ -14,4 +14,4 @@ COPY --from=builder /home/gradle/src/build/libs/*.jar /app/spring-boot-applicati
 COPY --from=builder /home/gradle/src/newrelic/* /app/newrelic/
 COPY --from=builder /home/gradle/src/newrelic.yml /app/newrelic/newrelic.yml
 
-CMD ["java", "-javaagent:/app/newrelic.jar", "-jar", "/app/spring-boot-application.jar"]
+CMD ["java", "-javaagent:/app/newrelic/newrelic.jar", "-jar", "/app/spring-boot-application.jar"]
