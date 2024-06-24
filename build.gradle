@@ -3,9 +3,8 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.5'
 	id 'java'
 
-	//id 'com.github.spotbugs' version '6.0.11'
+	id 'com.github.spotbugs' version '6.0.11'
 	id 'jacoco'
-	//id 'org.sonarqube' version '5.0.0.4638'
 	id "de.undercouch.download" version "5.3.0"
 }
 
@@ -27,11 +26,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// Added for testing
-	//spotbugs 'com.github.spotbugs:spotbugs:4.8.4'
-	//spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0'
+	spotbugs 'com.github.spotbugs:spotbugs:4.8.4'
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0'
 }
 
-/*
 tasks.spotbugsMain {
 	ignoreFailures = true
 	reports.create("sarif") {
@@ -43,7 +41,7 @@ tasks.spotbugsMain {
 		outputLocation = file("$rootDir/reports/spotbugs.html")
 	}
 }
-*/
+
 
 tasks.named('test') {
 	useJUnitPlatform()
@@ -68,13 +66,3 @@ task unzipNewrelic(type: Copy) {
     from zipTree(file('newrelic/newrelic-java.zip'))
     into rootDir
 }
-
-/*
-sonar {
-	properties {
-		property("sonar.projectKey", "Vulnerable-Java-App")
-		property("sonar.projectName", "Vulnerable Java App")
-		// add host URL and TOKEN in command line
-	}
-}
-*/

@@ -1,0 +1,7 @@
+---
+engines:
+  spotbugs:
+    modules:
+      - classesDirectories: [ "build/classes/java" ]
+        sourceDirectories: [ "src/main/java" ]
+    ignoreFailures: true
