@@ -10,12 +10,10 @@ This repository contains a sample application, the "Websites Tester Service", th
 
 1. Build the image locally, or use `ghcr.io/datadog/vulnerable-java-application`:
 2. Run:
-
-```
-docker run --rm -p 8000:8000 ghcr.io/datadog/vulnerable-java-application
-```
-
-3. You can then access the web application at http://127.0.0.1:8000
+    ```
+    docker run --rm -p 8000:8000 ghcr.io/datadog/vulnerable-java-application
+    ```
+3. You can then access the web application at <http://127.0.0.1:8000>
 
 ## Running on Kubernetes
 
@@ -24,19 +22,19 @@ kubectl run  vulnerable-application --port=8000 --expose=true --image ghcr.io/da
 kubectl port-forward pod/vulnerable-application 8000
 ```
 
-You can then access the web application at http://127.0.0.1:8000
+You can then access the web application at <http://127.0.0.1:8000>
 
 ## Exploitation
 
 ### Server-side request vulnerability
 
-1. Browse to http://127.0.0.1:8000/website.html
+1. Browse to <http://127.0.0.1:8000/website.html>
 2. Note how the input allows you to specify arbitrary URLs such as `http://google.com`, but also any internal IP such as `http://169.254.169.254/latest/meta-data/`
 3. When the applications is running in AWS, Azure or GCP, this can often be exploited to retrieve instance metadata credentials
 
 ### Command injection vulnerability
 
-1. Browse to http://127.0.0.1:8000/index.html
+1. Browse to <http://127.0.0.1:8000/index.html>
 2. Note how the input allows you to specify domain names such as `google.com` and ping them
 3. Note that there is some level of input validation - entering `$(whoami)` returns `Invalid domain name: $(whoami) - don't try to hack us!`
 4. However, the validation is buggy - notice how you can start the input with a domain name, and execute and command in the container!
