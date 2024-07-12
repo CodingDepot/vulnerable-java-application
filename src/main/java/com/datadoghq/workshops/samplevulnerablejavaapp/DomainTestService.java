@@ -30,10 +30,10 @@ public class DomainTestService {
       }
       int exitCode = process.exitValue();
       if (exitCode != 0) {
-        String stderr = new String(process.getErrorStream().readAllBytes());
+        String stderr = new String(process.getErrorStream().readAllBytes(), StandardCharsets.UTF_8);
         throw new UnableToTestDomainException("Ping returned exit status " + exitCode + ": " + stderr);
       }
-      return new String(process.getInputStream().readAllBytes());
+      return new String(process.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
     } catch (IOException e) {
       throw new UnableToTestDomainException("Internal error while testing domain: " + e.getMessage());
     } catch (InterruptedException e) {
