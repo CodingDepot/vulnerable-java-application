@@ -13,6 +13,9 @@ WORKDIR /app
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
 COPY --from=builder /home/gradle/src/newrelic/* /app/newrelic/
 COPY --from=builder /home/gradle/src/newrelic.yml /app/newrelic/newrelic.yml
-RUN apt-get update && apt-get install -y iputils-ping && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y --no-install-recomments iputils-ping=3:20190709-3 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 CMD ["java", "-javaagent:/app/newrelic/newrelic.jar", "-jar", "/app/spring-boot-application.jar"]
