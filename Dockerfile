@@ -4,18 +4,12 @@ WORKDIR /home/gradle/src
 RUN gradle downloadNewrelic && gradle unzipNewrelic
 RUN gradle bootJar --no-daemon
 
-
-FROM eclipse-temurin:17
-LABEL org.opencontainers.image.source="https://github.com/DataDog/vulnerable-java-application/"
+FROM amazoncorretto:17-alpine
 EXPOSE 8000
 RUN mkdir /app
 WORKDIR /app
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
 COPY --from=builder /home/gradle/src/newrelic/* /app/newrelic/
 COPY --from=builder /home/gradle/src/newrelic.yml /app/newrelic/newrelic.yml
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends iputils-ping=3:20190709-3 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
 
 CMD ["java", "-javaagent:/app/newrelic/newrelic.jar", "-jar", "/app/spring-boot-application.jar"]
