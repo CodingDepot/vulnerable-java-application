@@ -41,7 +41,7 @@ public class DomainTestService {
     }
   }
 
-  private static boolean isValidDomainName(String domainName) {
+  static boolean isValidDomainName(String domainName) {
     Matcher matcher = domainValidationRegex.matcher(domainName);
     return matcher.find();
   }
