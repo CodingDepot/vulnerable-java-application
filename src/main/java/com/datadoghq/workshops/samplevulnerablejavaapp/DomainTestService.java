@@ -6,7 +6,6 @@ import com.datadoghq.workshops.samplevulnerablejavaapp.exception.UnableToTestDom
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,7 +40,7 @@ public class DomainTestService {
     }
   }
 
-  private static boolean isValidDomainName(String domainName) {
+  static boolean isValidDomainName(String domainName) {
     Matcher matcher = domainValidationRegex.matcher(domainName);
     return matcher.find();
   }
