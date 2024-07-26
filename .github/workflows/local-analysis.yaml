@@ -2,7 +2,7 @@ name: "Codacy Local Analysis"
 
 on:
   push:
-    tags-ignore:
+    branches:
       - '**'
 
 jobs:
