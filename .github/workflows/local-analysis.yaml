@@ -1,6 +1,9 @@
 name: "Codacy Local Analysis"
 
-on: push
+on:
+  push:
+    tags-ignore:
+      - '**'
 
 jobs:
   analyze:
