@@ -1,0 +1,32 @@
+name: "Codacy Local Analysis"
+
+on: push
+
+jobs:
+  analyze:
+    name: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/setup-gradle@v3
+        with:
+          gradle-version: 8.9
+      - name: build
+        run: gradle build
+      - name: generate coverage report
+        run: gradle jacocoTestReport
+      - name: uploade coverage data
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: reports/coverage.xml
+      - name: generate and upload local analysis data
+        uses: codacy/codacy-analysis-cli-action@v4.4.5
+        with: 
+          tool: spotbugs
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          upload: true
