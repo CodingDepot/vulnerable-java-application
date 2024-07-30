@@ -27,6 +27,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           tags: type=semver,pattern={{version}}
+          flavor: latest=false
           images: codingdepot/idp-target-registry
       - name: Build and push
         id: push
