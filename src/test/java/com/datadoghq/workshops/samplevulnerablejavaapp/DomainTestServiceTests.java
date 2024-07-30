@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class DomainTestServiceTests {
     @Test
     void testValidDomain() {
-        String domain = "google.com";
+        String domain = "localhost";
         DomainTestService testService = new DomainTestService();
 
         try {
