@@ -1,7 +1,9 @@
-FROM gradle:7.5.1-jdk17 AS builder
+FROM gradle:8.9.0-jdk17 AS builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle downloadNewrelic && gradle unzipNewrelic
+RUN apt-get update && apt-get install -y unzip curl
+RUN curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip \
+        && unzip newrelic-java.zip
 RUN gradle bootJar --no-daemon
 
 FROM amazoncorretto:17-alpine
