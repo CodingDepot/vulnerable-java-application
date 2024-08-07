@@ -15,11 +15,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'ch.qos.logback:logback-classic:1.4.14'
-	implementation 'net.logstash.logback:logstash-logback-encoder:8.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.projectlombok:lombok:1.18.34'
 	compileOnly 'org.projectlombok:lombok:1.18.34'
 	annotationProcessor 'org.projectlombok:lombok:1.18.34'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
