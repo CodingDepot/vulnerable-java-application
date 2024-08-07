@@ -35,9 +35,13 @@ public class DomainTestService {
       }
       return new String(process.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
     } catch (IOException e) {
-      throw new UnableToTestDomainException("Internal error while testing domain: " + e.getMessage());
+      DomainTestException dte = new UnableToTestDomainException("Internal error while testing domain: " + e.getMessage());
+      dte.initCause(e);
+      throw dte;
     } catch (InterruptedException e) {
-      throw new UnableToTestDomainException("Timed out pinging domain");
+      DomainTestException dte = new UnableToTestDomainException("Timed out pinging domain");
+      dte.initCause(e);
+      throw dte;
     }
   }
 
